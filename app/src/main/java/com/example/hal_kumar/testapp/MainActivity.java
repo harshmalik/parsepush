@@ -20,15 +20,19 @@ public class MainActivity extends AppCompatActivity {
                     .applicationId("app") // should correspond to APP_ID env variable
                     .clientKey(null)// set explicitly unless clientKey is explicitly configured on Parse server
                     .addNetworkInterceptor(new ParseLogInterceptor())
-                    .server("http://192.168.59.132:1337/parse/").build());
+                    .server("http://192.168.1.3:1337/parse/").build());
             isParseInitialized = true;
         }
         ParseInstallation.getCurrentInstallation().saveInBackground();
         ParseObject gameScore = new ParseObject("GameScore");
-        gameScore.put("score", 7777);
-        gameScore.put("playerName", "hannn Plott");
+        gameScore.put("score", 123);
+        gameScore.put("playerName", "Novak");
         gameScore.put("cheatMode", false);
         gameScore.saveInBackground();
+        final ParseInstallation parseInstallation = ParseInstallation.getCurrentInstallation();
+        parseInstallation.put("GCMSenderId","584878908926");
+        parseInstallation.saveInBackground();
+
     }
 
 }
